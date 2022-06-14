@@ -1,4 +1,4 @@
-<h1 align="center">GitHub Actions's Debounce ⏸</h1>
+<h1 align="center">GitHub Actions's Debounce</h1>
 
 Useful if you have a workflow triggering on merge and prefer building only the latest and greatest version of your branch.
 
@@ -21,3 +21,6 @@ Add the following snippet within your workflow, preferably as one of the first s
 
 - **`wait`** Time to delay a GitHub Action. Always plan larger than you really need to defeat all GitHub API lags.
 - **`token`** Personal GitHub Access Token. Must have the `repo` scope. Default to `${{ github.token }}` (Optional)
+
+<br>
+<p align="center">🚦🚦🚦</p>
