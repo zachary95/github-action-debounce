@@ -1,0 +1,27 @@
+name: "Test the GitHub Action on Push"
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+    inputs:
+      wait:
+        description: 'Time to delay in seconds (default to 2 minutes)'
+        default: '120'
+        required: false
+        type: string
+
+jobs:
+  debounce-test:
+    name: 'Test the debouncing'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Debouncing
+        uses: ./
+        with:
+          wait: ${{ inputs.wait }}
+
+      - name: Say congrats
+        run: echo "Congrats!"
