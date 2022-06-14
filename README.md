@@ -1,16 +1,12 @@
-<center>
-    <h1>GitHub Actions's Debounce ⏸</h1>
-    <strong>Debounce multiple workflow runs.</strong> 
-</center>
+<h1 align="center">GitHub Actions's Debounce ⏸</h1>
 
----
-Useful if you have a workflow triggering on merge, and you prefer building only the latest and greatest version of your branch, rather than wasting time, money and energy to finish superseded workflow runs.   
+Useful if you have a workflow triggering on merge and prefer building only the latest and greatest version of your branch.
 
-This package will pause the execution of your workflow run and wait to be cancelled by a more recent workflow run, or resume execution.
+This package will pause the execution of your workflow run and wait to be canceled by a more recent workflow run or resume execution.
 
-## Getting Started
+## Usage
 
-Within your workflow, preferably as one of the first steps, add the following snippet. 
+Add the following snippet within your workflow, preferably as one of the first steps. 
 
 ```yaml
   ...
@@ -24,4 +20,4 @@ Within your workflow, preferably as one of the first steps, add the following sn
 ## Options 
 
 - **`wait`** Time to delay a GitHub Action. Always plan larger than you really need to defeat all GitHub API lags.
-- **`token`** (Optional) Personnal GitHub Access Token. Must have the `repo` scope. Default to `${{ github.token }}`
+- **`token`** Personal GitHub Access Token. Must have the `repo` scope. Default to `${{ github.token }}` (Optional)
