@@ -26,7 +26,7 @@ async function run() {
       core.info(`🧹  Cancelled ${cancelledWorkflows.length} superseded workflow runs. Starting the clock ...`);
     }
 
-    await clock.setTimeoutWithLogging(secondsToWait * 1000, 500, (timeElapsed, timeRemaining) => {
+    await clock.setTimeoutWithLogging(secondsToWait * 1000, (secondsToWait * 1000) / 10, (timeElapsed, timeRemaining) => {
       const relativeTimeRemaining = Clock.dayjs().add(timeRemaining, 'milliseconds').fromNow();
 
       core.info(`⏲  Executing ${relativeTimeRemaining}, unless another workflow runs ...`);

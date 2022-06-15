@@ -14,9 +14,9 @@ class Clock {
       message(timeElapsed, timeRemaining);
     }, interval);
 
-    this.setTimeout(timeoutInMs).then(() => {
-      clearInterval(loggerInterval);
-    });
+    await this.setTimeout(timeoutInMs)
+
+    clearInterval(loggerInterval);
   }
 
   async setTimeout(timeout: number) {

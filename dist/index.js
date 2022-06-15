@@ -8948,9 +8948,8 @@ class Clock {
                 const timeRemaining = timeoutInMs - timeElapsed;
                 message(timeElapsed, timeRemaining);
             }, interval);
-            this.setTimeout(timeoutInMs).then(() => {
-                clearInterval(loggerInterval);
-            });
+            yield this.setTimeout(timeoutInMs);
+            clearInterval(loggerInterval);
         });
     }
     setTimeout(timeout) {
@@ -12981,7 +12980,7 @@ function run() {
                 const cancelledWorkflows = yield workflow.cancelWorkflows(runIdsToCancel);
                 core.info(`🧹  Cancelled ${cancelledWorkflows.length} superseded workflow runs. Starting the clock ...`);
             }
-            yield clock.setTimeoutWithLogging(secondsToWait * 1000, 500, (timeElapsed, timeRemaining) => {
+            yield clock.setTimeoutWithLogging(secondsToWait * 1000, (secondsToWait * 1000) / 10, (timeElapsed, timeRemaining) => {
                 const relativeTimeRemaining = lib_Clock.dayjs().add(timeRemaining, 'milliseconds').fromNow();
                 core.info(`⏲  Executing ${relativeTimeRemaining}, unless another workflow runs ...`);
             });
