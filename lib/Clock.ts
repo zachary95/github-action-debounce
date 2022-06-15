@@ -1,4 +1,5 @@
 import dayjs from 'dayjs';
+
 import relativeTime from 'dayjs/plugin/relativeTime';
 
 class Clock {
@@ -6,16 +7,16 @@ class Clock {
     let loggerInterval;
     let timeElapsed = 0;
 
-    await this.setTimeout(timeoutInMs).then(() => {
-      clearInterval(loggerInterval);
-    });
-
     loggerInterval = setInterval(() => {
       timeElapsed = timeElapsed + interval;
       const timeRemaining = timeoutInMs - timeElapsed;
 
       message(timeElapsed, timeRemaining);
     }, interval);
+
+    this.setTimeout(timeoutInMs).then(() => {
+      clearInterval(loggerInterval);
+    });
   }
 
   async setTimeout(timeout: number) {

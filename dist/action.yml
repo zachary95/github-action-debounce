@@ -1,0 +1,18 @@
+name: 'Debounce'
+author: 'Zachary E. Dahan'
+description: 'Debounce multiple GitHub Actions Workflow Runs'
+inputs:
+  wait:
+    description: 'Time to delay a GitHub Action. Always plan larger than you really need to defeat all GitHub API lags.'
+    required: true
+    default: '5'
+  token:
+    description: 'Personnal GitHub Access Token. Must have the `repo` scope'
+    required: false
+    default: ${{ github.token }}
+runs:
+  using: 'node16'
+  main: 'dist/index.js'
+branding:
+  color: yellow
+  icon: pause-circle
