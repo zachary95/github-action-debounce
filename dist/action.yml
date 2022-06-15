@@ -1,4 +1,4 @@
-name: 'Debounce'
+name: 'Workflow Run Debounce'
 author: 'Zachary E. Dahan'
 description: 'Debounce multiple GitHub Actions Workflow Runs'
 inputs:
