@@ -3,9 +3,9 @@ author: 'Zachary E. Dahan'
 description: 'Debounce multiple GitHub Actions Workflow Runs'
 inputs:
   wait:
-    description: 'Time to delay a GitHub Action. Always plan larger than you really need to defeat all GitHub API lags.'
+    description: 'Time to delay a GitHub Action. Always plan larger than you really need to defeat all GitHub API lags. Default to 5 minutes.'
     required: true
-    default: '5'
+    default: '300'
   token:
     description: 'Personnal GitHub Access Token. Must have the `repo` scope'
     required: false
