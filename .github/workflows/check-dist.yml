@@ -21,7 +21,10 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v2
+        with:
+          repository: ${{ github.event.pull_request.head.repo.full_name }}
+          ref: ${{ github.event.pull_request.head.ref }}
 
       - name: Set Node.js 16.x
         uses: actions/setup-node@v3.3.0
@@ -34,13 +37,8 @@ jobs:
       - name: Rebuild the dist/ directory
         run: yarn prepare
 
-      - name: Compare the expected and actual dist/ directories
-        run: |
-          if [ "$(git diff --ignore-space-at-eol dist/ | wc -l)" -gt "0" ]; then
-            echo "Detected uncommitted changes after build.  See status below:"
-            git diff
-
-            git add dist/
-            git commit -m "chore(): Adding compiled dist
-            git push
-          fi
+      - uses: EndBug/add-and-commit@v9
+        with:
+          add: 'dist'
+          message: 'Add new /dist'
+          default_author: github_actions
