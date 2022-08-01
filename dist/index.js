@@ -12965,6 +12965,7 @@ var index_awaiter = (undefined && undefined.__awaiter) || function (thisArg, _ar
 
 
 
+console.log("Now adding a change!");
 function run() {
     return index_awaiter(this, void 0, void 0, function* () {
         try {
