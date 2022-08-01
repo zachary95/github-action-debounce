@@ -4,8 +4,6 @@ import WorkflowHandler from './lib/WorkflowHandler';
 import Clock from './lib/Clock';
 import InputParser from './lib/InputParser';
 
-console.log("Now adding a change!");
-
 async function run() {
   try {
     const inputParser = new InputParser();
