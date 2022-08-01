@@ -41,3 +41,4 @@ jobs:
         with:
           add: 'dist'
           message: 'Add new /dist'
+          default_author: github_actions
