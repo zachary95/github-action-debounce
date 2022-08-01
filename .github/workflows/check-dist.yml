@@ -34,13 +34,7 @@ jobs:
       - name: Rebuild the dist/ directory
         run: yarn prepare
 
-      - name: Compare the expected and actual dist/ directories
-        run: |
-          if [ "$(git diff --ignore-space-at-eol dist/ | wc -l)" -gt "0" ]; then
-            echo "Detected uncommitted changes after build.  See status below:"
-            git diff
-
-            git add dist/
-            git commit -m "chore(): Adding compiled dist"
-            git push
-          fi
+      - uses: EndBug/add-and-commit@v9
+        with:
+          add: 'dist'
+          message: 'Add new /dist'
