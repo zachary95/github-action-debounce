@@ -26,10 +26,20 @@ async function run() {
       core.info(`🧹  Cancelled ${cancelledWorkflows.length} superseded workflow runs. Starting the clock ...`);
     }
 
-    await clock.setTimeoutWithLogging(secondsToWait * 1000, (secondsToWait * 1000) / 10, (timeElapsed, timeRemaining) => {
+    // at least report status every minute for long intervals, and max every second for short intervals
+    const intervalSec = Math.max(Math.min((secondsToWait) / 10, 60), 1)
+
+    await clock.setTimeoutWithLogging(secondsToWait * 1000, intervalSec * 1000, (timeElapsed, timeRemaining) => {
+      if (await workflow.isCurrentWorkflowSuperseded()) {
+        // stop waiting if workflow has been superseded
+        return false
+      }
+
       const relativeTimeRemaining = Clock.dayjs().add(timeRemaining, 'milliseconds').fromNow();
 
       core.info(`⏲  Executing ${relativeTimeRemaining}, unless another workflow runs ...`);
+
+      return true
     });
 
     if (!process.env.ACT) {
