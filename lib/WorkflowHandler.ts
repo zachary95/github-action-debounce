@@ -37,6 +37,7 @@ class WorkflowHandler {
     return workflows.data.workflow_runs.filter(workflow => {
       return this.cancellableWorkflowStatus.includes(workflow.status)
         && workflow.name === github.context.workflow
+        && workflow.head_branch === github.context.ref.replace('refs/heads/', '')
         && Clock.dayjs(workflow.created_at).isBefore(currentWorkflow.created_at)
     });
   }
@@ -81,6 +82,7 @@ class WorkflowHandler {
 
     const otherWorkflowRuns = workflows.data.workflow_runs.filter(workflow =>
       workflow.name === github.context.workflow
+      && workflow.head_branch === github.context.ref.replace('refs/heads/', '')
       && Clock.dayjs(workflow.created_at).isAfter(currentWorkflow.created_at)
     );
 
